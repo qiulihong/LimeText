@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".LimeText" >
+
+    <TextView
+        android:id="@+id/file_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#cccccc"
+        android:text="@string/untitled" />
+	<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/scroll"
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:fadingEdge="none">
+		<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+	        android:id="@+id/file_content"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+    	    android:layout_weight="1"
+			android:background="@android:color/white"
+	        />
+    </ScrollView>
+
+</LinearLayout>

@@ -14,11 +14,10 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="me.lihong.limedroid.MainActivity"
-            android:label="@string/app_name" >
+            android:name="me.lihong.limedroid.LimeText"
+            android:label="@string/title_activity_lime_text" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

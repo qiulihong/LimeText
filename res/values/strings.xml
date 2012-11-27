@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">LimeDroid</string>
+    <string name="app_name">LimeText</string>
     <string name="title_section3">Section 3</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section1">Section 1</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello Lime!</string>
     <string name="menu_settings">Settings</string>
+    <string name="title_activity_lime_edit">LimeEdit</string>
+    <string name="title_activity_lime_text">LimeText</string>
+    <string name="untitled">Untitled</string>
 
 </resources>
