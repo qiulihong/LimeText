@@ -223,7 +223,7 @@ int id center_vertical 0x7f05000b
 int id dashboard 0x7f050001
 int id empty 0x7f050002
 int id file_content 0x7f050017
-int id file_save 0x7f05002c
+int id file_save 0x7f05002d
 int id file_title 0x7f050015
 int id gd_action_bar 0x7f050012
 int id gd_action_bar_content_view 0x7f050014
@@ -254,7 +254,7 @@ int id hdpi 0x7f050005
 int id ldpi 0x7f050003
 int id left 0x7f050009
 int id mdpi 0x7f050004
-int id menu_settings 0x7f05002d
+int id menu_settings 0x7f05002c
 int id multiple 0x7f05000f
 int id normal 0x7f050000
 int id right 0x7f05000a
@@ -293,7 +293,8 @@ int layout gd_tab_content 0x7f03001b
 int layout gd_tab_indicator 0x7f03001c
 int layout gd_text_item_view 0x7f03001d
 int layout gd_thumbnail_item_view 0x7f03001e
-int menu activity_lime_text 0x7f0a0000
+int menu activity_lime_edit 0x7f0a0000
+int menu activity_lime_text 0x7f0a0001
 int string app_name 0x7f08001c
 int string file_save 0x7f080025
 int string gd_add 0x7f08000b

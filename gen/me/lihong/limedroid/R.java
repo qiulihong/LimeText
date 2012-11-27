@@ -722,7 +722,7 @@ containing a value of this type.
         public static final int dashboard=0x7f050001;
         public static final int empty=0x7f050002;
         public static final int file_content=0x7f050017;
-        public static final int file_save=0x7f05002c;
+        public static final int file_save=0x7f05002d;
         public static final int file_title=0x7f050015;
         public static final int gd_action_bar=0x7f050012;
         public static final int gd_action_bar_content_view=0x7f050014;
@@ -753,7 +753,7 @@ containing a value of this type.
         public static final int ldpi=0x7f050003;
         public static final int left=0x7f050009;
         public static final int mdpi=0x7f050004;
-        public static final int menu_settings=0x7f05002d;
+        public static final int menu_settings=0x7f05002c;
         public static final int multiple=0x7f05000f;
         public static final int normal=0x7f050000;
         public static final int right=0x7f05000a;
@@ -796,7 +796,8 @@ containing a value of this type.
         public static final int gd_thumbnail_item_view=0x7f03001e;
     }
     public static final class menu {
-        public static final int activity_lime_text=0x7f0a0000;
+        public static final int activity_lime_edit=0x7f0a0000;
+        public static final int activity_lime_text=0x7f0a0001;
     }
     public static final class string {
         public static final int app_name=0x7f08001c;
