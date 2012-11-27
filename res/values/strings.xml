@@ -10,5 +10,6 @@
     <string name="title_activity_lime_edit">LimeEdit</string>
     <string name="title_activity_lime_text">LimeText</string>
     <string name="untitled">Untitled</string>
+    <string name="file_save">Save</string>
 
 </resources>
