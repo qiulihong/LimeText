@@ -15,5 +15,7 @@
     <string name="open">Open</string>
     <string name="open_recent">Open recent</string>
     <string name="about">About</string>
+    <string name="onSaveMessage">File saved</string>
+    <string name="dialog_save_file">Save</string>
 
 </resources>
