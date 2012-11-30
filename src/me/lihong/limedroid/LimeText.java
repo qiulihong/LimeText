@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.*;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,9 +15,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LimeText extends Activity {
+
+public class LimeText extends FragmentActivity {
 
 	private static final String TAG = "dialog";
+	
 	// some state variables
 	private boolean autoComplete = true;
 
@@ -164,15 +166,9 @@ public class LimeText extends Activity {
 			openingFile = false;
 			
 			if (fname.toString().indexOf("/sdcard/") == 0) {
-				//showDialog(DIALOG_SAVE_ERROR_SDCARD);
-				/*
-				 * TODO: Totally wrong here!!should be modify layout xml file for the activity and 
-				 * 		 here just getFragmentManager and beginTransaction
-				*/
 				DialogFragment df = new SaveFileDialogFragment();
-				df.show(getFragmentManager(), TAG);
+				df.show(getSupportFragmentManager(), TAG);
 			} else {
-				//showDialog(DIALOG_SAVE_ERROR);
 			}
 			
 			errorSaving = true;
