@@ -89,7 +89,7 @@ public class LimeText extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item){
     	switch (item.getItemId()) {
 	    	case R.id.save:
-	    		save();
+	    		showSaveDialog();
 	    		return true;
 	    	case R.id.save_as:
 	    		saveAs();
@@ -99,10 +99,10 @@ public class LimeText extends FragmentActivity {
     	}
     }
     
-    private boolean save() {
-    	return true;
+    private void showSaveDialog(){
+		DialogFragment df = new SaveFileDialogFragment();
+		df.show(getSupportFragmentManager(), TAG);
     }
-    
     /****************************************************************
 	 * saveNote()
 	 * 		What to do when saving note */
@@ -121,9 +121,8 @@ public class LimeText extends FragmentActivity {
 				errorSaving = true;
 				
 				if (fname.toString().indexOf("/sdcard/") == 0) {
-					showDialog(DIALOG_SAVE_ERROR_SDCARD);
 				}else{
-					showDialog(DIALOG_SAVE_ERROR_PERMISSIONS);
+					//showDialog(DIALOG_SAVE_ERROR_PERMISSIONS);
 				}
 
 				text.requestFocus();
@@ -166,8 +165,6 @@ public class LimeText extends FragmentActivity {
 			openingFile = false;
 			
 			if (fname.toString().indexOf("/sdcard/") == 0) {
-				DialogFragment df = new SaveFileDialogFragment();
-				df.show(getSupportFragmentManager(), TAG);
 			} else {
 			}
 			
