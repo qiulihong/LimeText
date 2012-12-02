@@ -11,5 +11,13 @@
     <string name="title_activity_lime_text">LimeText</string>
     <string name="untitled">Untitled</string>
     <string name="file_save">Save</string>
+    <string name="save_as">Save as</string>
+    <string name="open">Open</string>
+    <string name="open_recent">Open recent</string>
+    <string name="about">About</string>
+    <string name="onSaveMessage">File saved</string>
+    <string name="dialog_save_file">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="defaultFilePath">/sdcard/</string>
 
 </resources>
