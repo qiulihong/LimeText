@@ -6,12 +6,20 @@ import java.io.FileWriter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +84,9 @@ public class LimeText extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lime_text);
+        
+        //update optioons
+        updateOptions();
     }
 
     @Override
@@ -178,4 +189,144 @@ public class LimeText extends FragmentActivity {
     	return true;
     }
     
+	/****************************************************************
+	 * updateOptions()
+	 * start options app
+    **/
+	protected void updateOptions()
+	{
+		boolean value;
+
+		// load the preferences
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		autoComplete = sharedPref.getBoolean("autocomplete", false);
+		
+		/********************************
+		 * Auto correct and auto case */
+		boolean autocorrect = sharedPref.getBoolean("autocorrect", false);
+		boolean autocase = sharedPref.getBoolean("autocase", false);
+		
+		/*
+		//TODO: need to seperate each layout, now just use edit instead
+		if (autocorrect && autocase)
+		{
+			setContentView(R.layout.edit_autotext_autocase);
+		} else if (autocorrect) {
+			setContentView(R.layout.edit_autotext);
+		} else if (autocase) {
+			setContentView(R.layout.edit_autocase);
+		} else {
+			setContentView(R.layout.edit);
+		}
+		*/
+		setContentView(R.layout.activity_lime_text);
+		
+		text = (EditText) findViewById(R.id.file_content);
+		title = (TextView) findViewById(R.id.file_title);
+	
+		text.addTextChangedListener(new TextWatcher() {
+
+			public void onTextChanged(CharSequence one, int a, int b, int c) {
+
+				// put a little star in the title if the file is changed
+				if (!isTextChanged())
+				{
+					CharSequence temp = title.getText();
+					title.setText("* " + temp);
+				}
+			}
+
+			// complete the interface
+			public void afterTextChanged(Editable s) { }
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+		});
+	
+		/********************************
+		 * links clickable */
+		boolean linksclickable = sharedPref.getBoolean("linksclickable", false);
+		
+		if (linksclickable)
+			text.setAutoLinkMask(Linkify.ALL);
+		else
+			text.setAutoLinkMask(0);
+ 
+		/********************************
+		 * show/hide filename */
+		value = sharedPref.getBoolean("hidefilename", false);
+		if (value)
+			title.setVisibility(View.GONE);
+		else
+			title.setVisibility(View.VISIBLE);
+		
+		/********************************
+		 * line wrap */
+		value = sharedPref.getBoolean("linewrap", true);
+		text.setHorizontallyScrolling(!value);
+
+		// setup the scroll view correctly
+		ScrollView scroll = (ScrollView) findViewById(R.id.scroll);	
+		if (scroll != null)
+		{
+			scroll.setFillViewport(true);
+			scroll.setHorizontalScrollBarEnabled(!value);
+		}
+					
+		/********************************
+		 * font face */
+		String font = sharedPref.getString("font", "Monospace");
+
+		if (font.equals("Serif"))
+			text.setTypeface(Typeface.SERIF);
+		else if (font.equals("Sans Serif"))
+			text.setTypeface(Typeface.SANS_SERIF);
+		else  
+       		text.setTypeface(Typeface.MONOSPACE);
+
+		/********************************
+		 * font size */
+		String fontsize = sharedPref.getString("fontsize", "Medium");
+		
+		if (fontsize.equals("Extra Small"))
+			text.setTextSize(12.0f);
+		else if (fontsize.equals("Small"))
+			text.setTextSize(16.0f);
+		else if (fontsize.equals("Medium"))
+			text.setTextSize(20.0f);
+		else if (fontsize.equals("Large"))
+			text.setTextSize(24.0f);
+		else if (fontsize.equals("Huge"))
+			text.setTextSize(28.0f);
+		else
+			text.setTextSize(20.0f);
+		
+		/********************************
+		 * Colors */
+		int bgcolor = sharedPref.getInt("bgcolor", 0xFF000000);
+		text.setBackgroundColor(bgcolor);
+		
+		int fontcolor = sharedPref.getInt("fontcolor", 0xFFCCCCCC);
+		text.setTextColor(fontcolor);
+		
+		title.setTextColor(bgcolor);
+		title.setBackgroundColor(fontcolor);
+		
+		text.setLinksClickable(true);
+	} // updateOptions()
+    
+	public static boolean isTextChanged()	// checks if the text has been changed
+	{
+		CharSequence temp = title.getText();
+		
+		try {	// was getting error on the developer site, so added this to "catch" it
+		
+			if (temp.charAt(0) == '*')
+			{
+				return true;
+			}
+		} catch (Exception e) {
+			return false;
+		} 
+
+		return false;
+	} // end isTextChanged()
 }
