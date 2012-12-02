@@ -17,5 +17,6 @@
     <string name="about">About</string>
     <string name="onSaveMessage">File saved</string>
     <string name="dialog_save_file">Save</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

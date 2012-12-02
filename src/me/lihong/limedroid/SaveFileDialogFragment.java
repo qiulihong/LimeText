@@ -16,7 +16,7 @@ public class SaveFileDialogFragment extends DialogFragment {
 					  // Do something here 
 				   }
 			   })
-			   .setPositiveButton(R.string.file_save, new DialogInterface.OnClickListener(){
+			   .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){
 				   public void onClick(DialogInterface dialog, int id){
 					  // Do something here 
 				   }
