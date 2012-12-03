@@ -24,7 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class LimeText extends FragmentActivity {
+public class LimeText extends FragmentActivity 
+					  implements SaveFileDialogFragment.SaveFileDialogListener{
 
 	private static final String TAG = "dialog";
 	
@@ -329,4 +330,13 @@ public class LimeText extends FragmentActivity {
 
 		return false;
 	} // end isTextChanged()
+	
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog) {
+	}
+	
+	@Override
+	public void onDialogNegtiveClick(DialogFragment dialog) {
+		
+	}
 }
