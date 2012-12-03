@@ -116,7 +116,7 @@ public class LimeText extends FragmentActivity
 		df.show(getSupportFragmentManager(), TAG);
     }
     /****************************************************************
-	 * saveNote()
+	 * save(fname)
 	 * 		What to do when saving note */
 	public void save(CharSequence fname)
 	{
@@ -333,6 +333,8 @@ public class LimeText extends FragmentActivity
 	
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
+		TextView v = (TextView)dialog.getView().findViewById(R.id.filename_view);
+		save(v.getText().toString());
 	}
 	
 	@Override
