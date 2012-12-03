@@ -1,5 +1,6 @@
 package me.lihong.limedroid;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -18,15 +19,38 @@ public class SaveFileDialogFragment extends DialogFragment {
 			   .setPositiveButton(R.string.file_save, new DialogInterface.OnClickListener(){
 				   public void onClick(DialogInterface dialog, int id){
 					  // Do something here 
+					   buttonListener.onDialogPositionClick(SaveFileDialogFragment.this);
 				   }
 			   })
 			   .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){
 				   public void onClick(DialogInterface dialog, int id){
 					  // Do something here 
+					   buttonListener.onDialogNegtiveClick(SaveFileDialogFragment.this);
 				   }
 			   })
 		;
 		
 		return builder.create();
 	}
+	
+	// public interface, all activities need to show the dialog have to implement this interface
+	public interface SaveFileDialogListener {
+		public void onDialogPositiveClick(DialogFragment dialog);
+		public void onDialogNegtiveClick(DialogFragment dialog);
+	}
+	
+	SaveFileDialogListener buttonListener;
+	
+	@Override
+	public void onAttach(Activity activity){
+		super.onAttach(activity);
+		
+		try{
+			buttonListener = (SaveFileDialogListener) activity;
+		}catch(ClassCastException e){
+			throw new ClassCastException( activity.toString() +
+					" Must implement SaveFileDialog.SaveFileDialogListener" );
+		}
+	}
+	
 }
