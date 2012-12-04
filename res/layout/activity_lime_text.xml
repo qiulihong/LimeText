@@ -10,7 +10,7 @@
         android:id="@+id/file_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#cccccc"
+        android:background="@color/red"
         android:text="@string/untitled" />
 	<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
 		android:id="@+id/scroll"
@@ -22,11 +22,16 @@
 		<EditText
 		    xmlns:android="http://schemas.android.com/apk/res/android"
 		    android:id="@+id/file_content"
-		    android:layout_width="fill_parent"
-		    android:layout_height="match_parent"
-		    android:layout_weight="1"
 		    android:background="@android:color/white"
-		    android:inputType="textMultiLine" />
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:padding="5dip"
+			android:fadingEdge="none"
+			android:scrollbars="vertical|horizontal"
+			android:gravity="top"
+			android:autoText="false"
+			android:capitalize="none"
+			/>
 
     </ScrollView>
 
