@@ -84,7 +84,7 @@ public class LimeText extends FragmentActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lime_text);
+        setContentView(R.layout.layout_activity_lime_text_main);
         
         //update optioons
         updateOptions();
@@ -93,7 +93,7 @@ public class LimeText extends FragmentActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_lime_text, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_lime_text_main, menu);
         return true;
     }
     
@@ -223,7 +223,7 @@ public class LimeText extends FragmentActivity
 			setContentView(R.layout.edit);
 		}
 		*/
-		setContentView(R.layout.activity_lime_text);
+		setContentView(R.layout.layout_activity_lime_text_main);
 		
 		text = (EditText) findViewById(R.id.file_content);
 		title = (TextView) findViewById(R.id.file_title);
@@ -340,7 +340,6 @@ public class LimeText extends FragmentActivity
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		EditText v = (EditText)dialog.getDialog().findViewById(R.id.filename_edit);
-		System.out.println(v.getText().toString() + "kkk");
 		save(v.getText().toString());
 	}
 	
