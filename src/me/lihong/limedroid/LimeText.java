@@ -133,14 +133,15 @@ public class LimeText extends FragmentActivity
 				errorSaving = true;
 				
 				if (fname.toString().indexOf("/sdcard/") == 0) {
+    				showDialog(DIALOG_SAVE_ERROR_SDCARD);
 				}else{
-					//showDialog(DIALOG_SAVE_ERROR_PERMISSIONS);
+					showDialog(DIALOG_SAVE_ERROR_PERMISSIONS);
 				}
 
 				text.requestFocus();
 			
 				f = null;
-				return;
+				///return;
 			}
 			f = null; // hopefully this gets garbage collected
 			
@@ -156,6 +157,7 @@ public class LimeText extends FragmentActivity
 			} else {
 				out.write(text.getText().toString());
 			}
+			out.write("jsfkjsdfjsd");
 			
 			out.close();
 			
@@ -177,6 +179,7 @@ public class LimeText extends FragmentActivity
 			openingFile = false;
 			
 			if (fname.toString().indexOf("/sdcard/") == 0) {
+				System.out.println( e.getMessage());
 			} else {
 			}
 			
@@ -302,6 +305,8 @@ public class LimeText extends FragmentActivity
 		
 		/********************************
 		 * Colors */
+		/*
+		 * all these should be set in xml
 		int bgcolor = sharedPref.getInt("bgcolor", 0xFF000000);
 		text.setBackgroundColor(bgcolor);
 		
@@ -312,6 +317,7 @@ public class LimeText extends FragmentActivity
 		title.setBackgroundColor(fontcolor);
 		
 		text.setLinksClickable(true);
+		*/
 	} // updateOptions()
     
 	public static boolean isTextChanged()	// checks if the text has been changed
@@ -333,7 +339,8 @@ public class LimeText extends FragmentActivity
 	
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
-		TextView v = (TextView)dialog.getView().findViewById(R.id.filename_view);
+		EditText v = (EditText)dialog.getDialog().findViewById(R.id.filename_edit);
+		System.out.println(v.getText().toString() + "kkk");
 		save(v.getText().toString());
 	}
 	

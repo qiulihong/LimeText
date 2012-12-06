@@ -15,6 +15,7 @@ public class SaveFileDialogFragment extends DialogFragment {
 		
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		builder.setView(inflater.inflate(R.layout.dialog_save_file, null))
+			   .setIcon(android.R.drawable.ic_dialog_info)
 			   .setTitle(R.string.dialog_save_file)
 			   .setPositiveButton(R.string.file_save, new DialogInterface.OnClickListener(){
 				   public void onClick(DialogInterface dialog, int id){

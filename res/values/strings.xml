@@ -19,5 +19,6 @@
     <string name="dialog_save_file">Save</string>
     <string name="cancel">Cancel</string>
     <string name="defaultFilePath">/sdcard/</string>
+    <string name="filename_label">File name:</string>
 
 </resources>
