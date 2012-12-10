@@ -83,6 +83,7 @@ public class LimeText extends FragmentActivity
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activity_lime_text_main);
         
@@ -157,7 +158,6 @@ public class LimeText extends FragmentActivity
 			} else {
 				out.write(text.getText().toString());
 			}
-			out.write("jsfkjsdfjsd");
 			
 			out.close();
 			
@@ -187,7 +187,7 @@ public class LimeText extends FragmentActivity
 		}
 		
 		text.requestFocus();
-	} // end saveNote()
+	} // end save()
     
     private boolean saveAs() {
     	return true;
@@ -233,7 +233,7 @@ public class LimeText extends FragmentActivity
 			public void onTextChanged(CharSequence one, int a, int b, int c) {
 
 				// put a little star in the title if the file is changed
-				if (!isTextChanged())
+				if (!isTextChanged()) // if it's first time be modified
 				{
 					CharSequence temp = title.getText();
 					title.setText("* " + temp);
