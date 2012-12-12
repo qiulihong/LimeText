@@ -18,6 +18,7 @@ import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -102,10 +103,14 @@ public class LimeText extends FragmentActivity
     public boolean onOptionsItemSelected(MenuItem item){
     	switch (item.getItemId()) {
 	    	case R.id.save:
-	    		showSaveDialog();
+	    		if(filename == ""){
+	    		    showSaveDialog();
+	    		}else{
+	    			save(filename);
+	    		}
 	    		return true;
 	    	case R.id.save_as:
-	    		saveAs();
+	    		showSaveDialog();
 	    		return true;
 	    	default:
 	    		return super.onOptionsItemSelected(item);
@@ -114,6 +119,11 @@ public class LimeText extends FragmentActivity
     
     private void showSaveDialog(){
 		DialogFragment df = new SaveFileDialogFragment();
+		if( filename != "" ){
+			// TODO: need to populate filename in save as dialog
+			//AutoCompleteTextView fname = (AutoCompleteTextView)df.getView().findViewById(R.id.filename_edit);
+			//fname.setText(filename);
+		}
 		df.show(getSupportFragmentManager(), TAG);
     }
     /****************************************************************
@@ -188,10 +198,6 @@ public class LimeText extends FragmentActivity
 		
 		text.requestFocus();
 	} // end save()
-    
-    private boolean saveAs() {
-    	return true;
-    }
     
 	/****************************************************************
 	 * updateOptions()
