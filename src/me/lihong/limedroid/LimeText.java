@@ -3,6 +3,8 @@ package me.lihong.limedroid;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -59,28 +61,12 @@ public class LimeText extends FragmentActivity
 	protected long lastModified = 0;
 	protected boolean untitled = true;
 	
+	static private List<String> recentItems = null;
+	
 	// file format ids
 	private final static int FILEFORMAT_NL = 1;
 	private final static int FILEFORMAT_CR = 2;
 	private final static int FILEFORMAT_CRNL = 3;
-	
-	// dialog ids
-	private final static int DIALOG_SAVE_FILE = 1;
-	private final static int DIALOG_OPEN_FILE = 2;
-	private final static int DIALOG_SHOULD_SAVE = 3;
-	private final static int DIALOG_OVERWRITE = 4;
-	private final static int DIALOG_SAVE_ERROR = 5;
-	private final static int DIALOG_SAVE_ERROR_PERMISSIONS = 6;
-	private final static int DIALOG_SAVE_ERROR_SDCARD = 7;
-	private final static int DIALOG_READ_ERROR = 8;
-	private final static int DIALOG_NOTFOUND_ERROR = 9;
-	private final static int DIALOG_SHOULD_SAVE_INTENT = 13;
-	private final static int DIALOG_MODIFIED = 14;
-	
-	private final static int DIALOG_SAVE_FILE_AUTOCOMPLETE = 10;
-	private final static int DIALOG_OPEN_FILE_AUTOCOMPLETE = 11;
-
-	private final static int DIALOG_RECENT_FILE_DIALOG = 12;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,9 +130,9 @@ public class LimeText extends FragmentActivity
 				errorSaving = true;
 				
 				if (fname.toString().indexOf("/sdcard/") == 0) {
-    				showDialog(DIALOG_SAVE_ERROR_SDCARD);
+    				//showDialog(DIALOG_SAVE_ERROR_SDCARD);
 				}else{
-					showDialog(DIALOG_SAVE_ERROR_PERMISSIONS);
+					//showDialog(DIALOG_SAVE_ERROR_PERMISSIONS);
 				}
 
 				text.requestFocus();
@@ -183,7 +169,7 @@ public class LimeText extends FragmentActivity
 			
 			temp_filename = "";
 			
-			//addRecentFile(fname);
+			addRecentFile(fname);
 		} catch (Exception e) { //Catch exception if any
 			creatingFile = false;
 			openingFile = false;
@@ -351,6 +337,38 @@ public class LimeText extends FragmentActivity
 	
 	@Override
 	public void onDialogNegtiveClick(DialogFragment dialog) {
+		return;
+	}
+	
+	// recent files function
+	/**
+	 * @category Recent files
+	 * @author leonqiu
+	 * 
+	 * LimeText::readRecentFiles() is used to read recent files out of preference and store them into local variable
+	 * List<String> recentItems
+	 */
+	public void readRecentFiles() {
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		int numFiles = pref.getInt("recent_file_number", 0);
+		
+		if(recentItems == null){
+			recentItems = new ArrayList<String>();
+		}
+		recentItems.clear();
+		
+		// read files from preferences
+		for(int i=0; i<numFiles; i++){
+			recentItems.add(pref.getString("rf_file_"+i, i+""));
+		}
+	}
+	
+	public void addRecentFile(CharSequence fname){
+		
+	}
+	
+	public void removeRecentFile(CharSequence fname){
 		
 	}
 }
