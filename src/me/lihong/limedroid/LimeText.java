@@ -68,6 +68,8 @@ public class LimeText extends FragmentActivity
 	private final static int FILEFORMAT_CR = 2;
 	private final static int FILEFORMAT_CRNL = 3;
 	
+	private final static int RECENT_FILE_LIST_LENGTH = 10;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	
@@ -366,6 +368,35 @@ public class LimeText extends FragmentActivity
 	
 	public void addRecentFile(CharSequence fname){
 		
+		// init recentItems
+		if( recentItems == null ){
+			readRecentFiles();
+		}
+		// if ongoing file has been at recent files list, get rid of it
+		int i;
+		int length = recentItems.size();
+		for( i=0; i<length; i++){
+			String t = recentItems.get(i);
+			if(t == fname.toString()){
+				recentItems.remove(i);
+				i--;
+				length--;
+			}
+		}
+		// push the very last recent file into list
+		recentItems.add(0, fname.toString());
+		
+		// keep a length limit for the recent file list
+		if(recentItems.size() > RECENT_FILE_LIST_LENGTH) {
+			recentItems.remove(RECENT_FILE_LIST_LENGTH);
+		}
+		// write back to preference
+		SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+		for(i=0; i<recentItems.size(); i++){
+			editor.putString("rf_file_"+i, recentItems.get(i).toString());
+		}
+		editor.putInt("recent_file_number", recentItems.size());
+		editor.commit();
 	}
 	
 	public void removeRecentFile(CharSequence fname){
