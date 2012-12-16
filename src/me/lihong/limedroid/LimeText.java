@@ -400,6 +400,24 @@ public class LimeText extends FragmentActivity
 	}
 	
 	public void removeRecentFile(CharSequence fname){
-		
+		if(recentItems == null){
+			readRecentFiles();
+		}
+		int i;
+		int length = recentItems.size();
+		for(i=0; i< length; i++){
+			if(recentItems.get(i) == fname.toString()){
+				recentItems.remove(i);
+				i--;
+				length--;
+			}
+		}
+		// write back to preference
+		SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+		for(i=0; i<recentItems.size(); i++){
+			editor.putString("rf_file_"+i, recentItems.get(i));
+		}
+		editor.putInt("recent_file_number", recentItems.size());
+		editor.commit();
 	}
 }

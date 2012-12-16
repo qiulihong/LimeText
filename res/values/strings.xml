@@ -20,5 +20,6 @@
     <string name="cancel">Cancel</string>
     <string name="defaultFilePath">/sdcard/</string>
     <string name="filename_label">File name:</string>
+    <string name="open_recent_files">Recent files</string>
 
 </resources>
