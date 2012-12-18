@@ -120,8 +120,7 @@ public class LimeText extends FragmentActivity
     private void showRecentFilesDialog(List<String> recentItems){
       OpenRecentFilesDialogFragment df = new OpenRecentFilesDialogFragment();
       // TODO: before show recentfiles dialog, need to readRecentFiles first!!
-      System.out.println(recentItems.size());
-      //df.setTtt(recentItems);
+      df.setRecentItems(recentItems);
       df.show(getSupportFragmentManager(), TAG);
     }
     /****************************************************************

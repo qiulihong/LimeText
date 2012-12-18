@@ -11,16 +11,17 @@ import android.widget.ListView;
 
 public class OpenRecentFilesDialogFragment extends DialogFragment{
 	protected ListView recentFilesList;
+	protected List<String> recentFiles;
 	
-	//private RecentFilesArrayAdapter recentFilesAdapter = new RecentFilesArrayAdapter(getActivity().getBaseContext(), recentItems);
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState){
+		RecentFilesArrayAdapter recentFilesAdapter = new RecentFilesArrayAdapter(getActivity().getBaseContext(), recentFiles);
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		recentFilesList = (ListView)inflater.inflate(R.layout.layout_dialog_recent_files,null);
-		//recentFilesList.setAdapter(recentFilesAdapter);
+		recentFilesList.setAdapter(recentFilesAdapter);
 		
 		builder.setView(recentFilesList)
 			   .setTitle(R.string.open_recent_files)
@@ -31,7 +32,8 @@ public class OpenRecentFilesDialogFragment extends DialogFragment{
 		
 	}
 	
-	public void setTtt(List<String> i){
-	  System.out.println(i.size());
+	public void setRecentItems(List<String> l){
+	  recentFiles = l;
+	  System.out.println(recentFiles.size());
 	}
 }
