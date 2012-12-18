@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -20,7 +19,6 @@ import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -61,7 +59,7 @@ public class LimeText extends FragmentActivity
 	protected long lastModified = 0;
 	protected boolean untitled = true;
 	
-	static private List<String> recentItems = null;
+	static public List<String> recentItems = null;
 	
 	// file format ids
 	private final static int FILEFORMAT_NL = 1;
@@ -100,6 +98,10 @@ public class LimeText extends FragmentActivity
 	    	case R.id.save_as:
 	    		showSaveDialog();
 	    		return true;
+	    	case R.id.recent_opened:
+	    	  readRecentFiles();
+	    	  showRecentFilesDialog(recentItems);
+	    	  return true;
 	    	default:
 	    		return super.onOptionsItemSelected(item);
     	}
@@ -113,6 +115,14 @@ public class LimeText extends FragmentActivity
 			//fname.setText(filename);
 		}
 		df.show(getSupportFragmentManager(), TAG);
+    }
+    
+    private void showRecentFilesDialog(List<String> recentItems){
+      OpenRecentFilesDialogFragment df = new OpenRecentFilesDialogFragment();
+      // TODO: before show recentfiles dialog, need to readRecentFiles first!!
+      System.out.println(recentItems.size());
+      //df.setTtt(recentItems);
+      df.show(getSupportFragmentManager(), TAG);
     }
     /****************************************************************
 	 * save(fname)
